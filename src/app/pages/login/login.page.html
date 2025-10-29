@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isRegistering ? 'Registrarse' : 'Iniciar sesión' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  @if (!isRegistering) {
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="onLogin()" [disabled]="loading">
+        {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
+      </ion-button>
+      
+      <ion-button expand="block" fill="clear" (click)="toggleRegister()">
+        ¿No tienes cuenta? Regístrate
+      </ion-button>
+    </div>
+  }
+
+  @if (isRegistering) {
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="onRegister()" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrarse' }}
+      </ion-button>
+      
+      <ion-button expand="block" fill="clear" (click)="toggleRegister()">
+        ¿Ya tienes cuenta? Inicia sesión
+      </ion-button>
+    </div>
+  }
+</ion-content>
